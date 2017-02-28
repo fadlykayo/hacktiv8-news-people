@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react'
+
+import { DataList } from './DataList.jsx'
+import { DataSearch } from './DataSearch.jsx'
 
 const style = {
   margin: '30px 150px'
 }
 
-class Home extends Component {
+export class Home extends Component {
   constructor () {
     super()
     this.state = {

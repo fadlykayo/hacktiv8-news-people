@@ -1,100 +1,11 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import logo from './logo.svg'
 import './App.css'
 
-import { DataList, DataSearch, Menu } from './components'
-
-const style = {
-  margin: '30px 150px'
-}
-
-class Home extends Component {
-  constructor () {
-    super()
-    this.state = {
-      news: [],
-      searchKey: ''
-    }
-  }
-
-  handleChange (event) {
-    this.setState({
-      searchKey: event.target.value
-    })
-    this.fetchNews(event.target.value)
-  }
-
-  componentDidMount () {
-    this.fetchNews('')
-  }
-
-  fetchNews (searchQuery) {
-    fetch(`https://hn.algolia.com/api/v1/search?query=${encodeURI(searchQuery)}`)
-      .then((response) => {
-        return response.json()
-      })
-      .then((resp) => {
-        this.setState({
-          news: resp.hits
-        })
-      })
-  }
-
-  render () {
-    return (
-      <div>
-        <div className='News-list' style={style}>
-          <DataSearch searchKey={this.state.searchKey} handleChange={this.handleChange.bind(this)} />
-          <DataList news={this.state.news.filter((eachNews) => (eachNews.title === null ? '' : eachNews.title).match(new RegExp(this.state.searchKey, 'i')))} />
-        </div>
-      </div>
-    )
-  }
-}
-
-class About extends Component {
-  constructor () {
-    super()
-    this.state = {
-      peoples: []
-    }
-  }
-
-  componentDidMount () {
-    this.fetchPeoples()
-  }
-
-  fetchPeoples () {
-    fetch('https://swapi.co/api/people/')
-      .then((response) => {
-        return response.json()
-      })
-      .then((resp) => {
-        this.setState({
-          peoples: resp.results
-        })
-      })
-  }
-
-  render () {
-    return (
-      <div>
-        <h5>Peoples</h5>
-        <ul>
-          {this.state.peoples.map((people, index) => {
-             return (
-               <li key={index}>
-                 {people.name}
-               </li>
-             )
-           })}
-        </ul>
-      </div>
-    )
-  }
-}
+import { Menu } from './components'
+import { Routes } from './Routes'
 
 const App = () => (
   <div className='App'>
@@ -105,8 +16,7 @@ const App = () => (
     <Router>
       <div>
         <Menu />
-        <Route exact path='/' component={Home} />
-        <Route path='/about' component={About} />
+        <Routes />
       </div>
     </Router>
   </div>
