@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 import logo from './logo.svg'
 import './App.css'
 
-import { DataList, DataSearch } from './components'
+import { DataList, DataSearch, Menu } from './components'
 
 const style = {
   margin: '30px 150px'
 }
 
-class App extends Component {
+class Home extends Component {
   constructor () {
     super()
     this.state = {
@@ -42,11 +44,7 @@ class App extends Component {
 
   render () {
     return (
-      <div className='App'>
-        <div className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h6>Welcome to React</h6>
-        </div>
+      <div>
         <div className='News-list' style={style}>
           <DataSearch searchKey={this.state.searchKey} handleChange={this.handleChange.bind(this)} />
           <DataList news={this.state.news.filter((eachNews) => (eachNews.title === null ? '' : eachNews.title).match(new RegExp(this.state.searchKey, 'i')))} />
@@ -55,5 +53,27 @@ class App extends Component {
     )
   }
 }
+
+const About = () => (
+  <div>
+    <h5>About</h5>
+  </div>
+)
+
+const App = () => (
+  <div className='App'>
+    <div className='App-header'>
+      <img src={logo} className='App-logo' alt='logo' />
+      <h6>Hacktiv8 News and Peoples</h6>
+    </div>
+    <Router>
+      <div>
+        <Menu />
+        <Route exact path='/' component={Home} />
+        <Route path='/about' component={About} />
+      </div>
+    </Router>
+  </div>
+)
 
 export default App
