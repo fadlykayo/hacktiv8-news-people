@@ -6,17 +6,15 @@ const style = {
 }
 
 export const Menu = () => (
-  <div>
-    <ul>
-      <li style={style}>
-        <Link to='/'> Home
-        </Link>
-      </li>
-      {'  |  '}
-      <li style={style}>
-        <Link to='/about'> About
-        </Link>
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li style={style}>
+      <Link to='/'> Home
+      </Link>
+    </li>
+    {'  |  '}
+    <li style={style}>
+      <Link to='/about'> About
+      </Link>
+    </li>
+  </ul>
 )
