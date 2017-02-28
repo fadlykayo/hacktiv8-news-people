@@ -1,3 +1,2 @@
-export { DataList } from './DataList.jsx'
-export { DataSearch } from './DataSearch.jsx'
+export { Home } from './Home.jsx'
 export { Menu } from './Menu.jsx'
