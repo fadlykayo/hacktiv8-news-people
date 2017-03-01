@@ -23,7 +23,7 @@ export class Home extends Component {
     this.fetchNews(event.target.value)
   }
 
-  handleClick () {
+  handleClick (event) {
     this.setState({
       searchKey: ''
     })
