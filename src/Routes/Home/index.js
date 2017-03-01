@@ -23,6 +23,12 @@ export class Home extends Component {
     this.fetchNews(event.target.value)
   }
 
+  handleClick () {
+    this.setState({
+      searchKey: ''
+    })
+  }
+
   componentDidMount () {
     this.fetchNews('')
   }
@@ -42,7 +48,7 @@ export class Home extends Component {
   render () {
     return (
       <div className='News-list' style={style}>
-        <DataSearch searchKey={this.state.searchKey} handleChange={this.handleChange.bind(this)} />
+        <DataSearch handleClick={this.handleClick.bind(this)} searchKey={this.state.searchKey} handleChange={this.handleChange.bind(this)} />
         <DataList news={this.state.news.filter((eachNews) => (eachNews.title === null ? '' : eachNews.title).match(new RegExp(this.state.searchKey, 'i')))} />
       </div>
     )

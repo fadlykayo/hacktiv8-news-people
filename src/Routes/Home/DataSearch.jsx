@@ -16,6 +16,9 @@ export const DataSearch = (props) => {
         value={props.searchKey}
         type='text'
         onChange={props.handleChange} />
+      <button className='btn' type='button' onClick={props.handleClick}>
+        Reset
+      </button>
     </form>
   )
 }
